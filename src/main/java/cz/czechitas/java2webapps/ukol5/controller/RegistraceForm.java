@@ -1,9 +1,6 @@
 package cz.czechitas.java2webapps.ukol5.controller;
 
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -11,17 +8,18 @@ import java.time.LocalDate;
 public class RegistraceForm {
 
 
-    @NotBlank
+    @NotBlank(message = "Jméno musí být vyplněno.")
     private String jmeno;
-    @NotBlank
+    @NotBlank(message = "Příjmení musí být vyplněno.")
     private String prijmeni;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "Datum narození musí být vyplněno.")
     private LocalDate datumNarozeni;
 
-    @NotNull
+    @NotNull(message = "Vyberte pohlaví.")
     private Pohlavi pohlavi;
-    @NotBlank
+    @NotBlank(message = "Vyberte turnus.")
     private String turnus;
     @Email
     private String email;

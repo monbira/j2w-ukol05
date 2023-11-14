@@ -28,6 +28,10 @@ public class RegistraceController {
   @PostMapping("/")
   public Object form(@Valid @ModelAttribute("form") RegistraceForm form, BindingResult bindingResult) {
 
+    if (form.getDatumNarozeni() == null) {
+      return new ModelAndView("/formular");
+    }
+
     Period period = form.getDatumNarozeni().until(LocalDate.now());
     int vek = period.getYears();
     if (vek<9||vek>15){
